@@ -30,7 +30,7 @@ mod tests {
 struct Solution {}
 
 // {{ problem.link }}
-// START SOLUTION
+
 {{ problem.code }}
 "#,
         ) {
