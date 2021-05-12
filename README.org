@@ -7,5 +7,5 @@ cargo run -- --slug=<title-slug>
 
 For instance:
 #+begin_src sh
-cargo run -- --slug=two-slug
+cargo run -- --slug=two-sum
 #+end_src
