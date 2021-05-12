@@ -8,3 +8,4 @@ pub struct Problem {
 }
 
 // problems
+mod problem_0001_two_sum;
