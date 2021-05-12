@@ -12,3 +12,4 @@ pub struct Problem {
 // problems
 mod problem_0001_two_sum;
 mod problem_0002_add_two_numbers;
+mod problem_0003_longest_substring_without_repeating_characters;
