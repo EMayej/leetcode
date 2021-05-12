@@ -1,5 +1,5 @@
 use html2text;
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize)]
 struct Query {
@@ -61,20 +61,20 @@ pub fn fetch_with_slug(slug: &str) -> Problem {
     let question = response.data.question;
 
     let link = format!("https://leetcode.com/problems/{}", slug);
-    let mut problem = Problem {
-        id: question.question_frontend_id,
-        title: question.title,
-        content: normalize(&question.content),
-        code: "".to_string(),
-        link,
-    };
-    problem.code = question
+    let content = normalize(&question.content);
+    let code = question
         .code_definition
         .into_iter()
         .find(|code| code.value == "rust")
         .unwrap()
         .default_code;
-    problem
+    Problem {
+        id: question.question_frontend_id,
+        title: question.title,
+        content,
+        code,
+        link,
+    }
 }
 
 fn normalize(content: &str) -> String {
