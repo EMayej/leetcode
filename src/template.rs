@@ -6,8 +6,7 @@ lazy_static! {
         let mut tera = Tera::default();
         if let Err(e) = tera.add_raw_template(
             "problem",
-            r#"
-/**
+            r#"/**
  *
  * {{ problem.link }}
  *
@@ -21,17 +20,17 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test__{{ problem.id }} () {
+    fn test_{{ problem.id }}() {
         for case in vec![
         ] {
-
         }
     }
 }
 
 struct Solution {}
 
-/// START SOLUTION
+// {{ problem.link }}
+// START SOLUTION
 {{ problem.code }}
 "#,
         ) {
