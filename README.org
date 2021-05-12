@@ -1,0 +1,11 @@
+#+TITLE: Leetcode
+
+* Add new problem
+#+begin_src sh
+cargo run -- --slug=<title-slug>
+#+end_src
+
+For instance:
+#+begin_src sh
+cargo run -- --slug=two-slug
+#+end_src
