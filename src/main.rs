@@ -44,6 +44,8 @@ fn main() {
             .append(true)
             .open("./src/problem.rs")
             .unwrap();
-        let _ = writeln!(mod_problem, "mod {};", problem_mod_name);
+        mod_problem
+            .write_all(format!("mod {};\n", problem_mod_name).as_bytes())
+            .unwrap();
     }
 }
