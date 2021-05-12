@@ -11,3 +11,4 @@ pub struct Problem {
 
 // problems
 mod problem_0001_two_sum;
+mod problem_0002_add_two_numbers;
