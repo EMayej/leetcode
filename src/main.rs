@@ -3,10 +3,8 @@ use std::fs;
 use std::io::Write;
 use std::path::Path;
 
-mod fetcher;
-mod template;
-
-mod problem;
+use leetcode::fetcher;
+use leetcode::template;
 
 const TITLE_SLUG: &str = "TITLE_SLUG";
 fn main() {
@@ -26,32 +24,26 @@ fn main() {
         .get_matches();
     let slug = matches.value_of(TITLE_SLUG).unwrap();
     let problem = fetcher::fetch_with_slug(slug);
-    let file_name = format!(
-        "problem_{:0>4}_{}",
-        problem.id,
-        slug.replace("-", "_"),
-    );
-    let file_path = Path::new("./src/problem").join(format!("{}.rs", file_name));
-    if file_path.exists() {
-        panic!("problem already initialized");
+    let problem_mod_name = format!("problem_{:0>4}_{}", problem.id, slug.replace("-", "_"));
+    {
+        let problem_file_path = Path::new("./src/problem").join(format!("{}.rs", problem_mod_name));
+        if problem_file_path.exists() {
+            panic!("problem {} exists", problem_file_path.display());
+        }
+        let mut problem_file = fs::OpenOptions::new()
+            .write(true)
+            .create(true)
+            .open(&problem_file_path)
+            .unwrap();
+        problem_file
+            .write_all(template::render(&problem).as_bytes())
+            .unwrap();
     }
-
-    let source = template::render(&problem);
-    let mut file = fs::OpenOptions::new()
-        .write(true)
-        .create(true)
-        .truncate(true)
-        .open(&file_path)
-        .unwrap();
-
-    file.write_all(source.as_bytes()).unwrap();
-    drop(file);
-
-    let mut lib_file = fs::OpenOptions::new()
-        .write(true)
-        .append(true)
-        .open("./src/problem.rs")
-        .unwrap();
-    let _ = writeln!(lib_file, "mod {};", file_name);
+    {
+        let mut mod_problem = fs::OpenOptions::new()
+            .append(true)
+            .open("./src/problem.rs")
+            .unwrap();
+        let _ = writeln!(mod_problem, "mod {};", problem_mod_name);
+    }
 }
-
