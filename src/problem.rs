@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 #[derive(Default, Debug, serde::Serialize)]
 pub struct Problem {
     pub id: String,
