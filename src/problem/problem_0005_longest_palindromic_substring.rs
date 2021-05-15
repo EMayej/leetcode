@@ -59,30 +59,30 @@ impl Solution {
             return s;
         }
 
-        let mut max_left = 0;
-        let mut max_right = 0;
+        let mut max_first = 0;
+        let mut max_last = 0;
 
         let data = s.as_bytes();
         let mut next_center = 0;
         while next_center < data.len() {
-            let mut left = next_center;
-            let mut right = next_center;
-            while right < data.len() - 1 && data[right + 1] == data[next_center] {
-                right += 1;
+            let mut first = next_center;
+            let mut last = next_center;
+            while last < data.len() - 1 && data[last + 1] == data[next_center] {
+                last += 1;
             }
-            next_center = right + 1;
+            next_center = last + 1;
 
-            while 0 < left && right < data.len() - 1 && data[left - 1] == data[right + 1] {
-                left -= 1;
-                right += 1;
+            while 0 < first && last < data.len() - 1 && data[first - 1] == data[last + 1] {
+                first -= 1;
+                last += 1;
             }
 
-            if right - left > max_right - max_left {
-                max_left = left;
-                max_right = right;
+            if last - first > max_last - max_first {
+                max_first = first;
+                max_last = last;
             }
         }
 
-        s[max_left..=max_right].into()
+        s[max_first..=max_last].into()
     }
 }
