@@ -83,6 +83,6 @@ impl Solution {
             }
         }
 
-        s[max_left..max_right + 1].into()
+        s[max_left..=max_right].into()
     }
 }
