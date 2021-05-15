@@ -14,3 +14,4 @@ mod problem_0001_two_sum;
 mod problem_0002_add_two_numbers;
 mod problem_0003_longest_substring_without_repeating_characters;
 mod problem_0004_median_of_two_sorted_arrays;
+mod problem_0005_longest_palindromic_substring;
