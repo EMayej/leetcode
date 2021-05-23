@@ -18,3 +18,4 @@ mod problem_0005_longest_palindromic_substring;
 mod problem_0006_zigzag_conversion;
 mod problem_0007_reverse_integer;
 mod problem_0009_palindrome_number;
+mod problem_0011_container_with_most_water;
