@@ -17,3 +17,4 @@ mod problem_0004_median_of_two_sorted_arrays;
 mod problem_0005_longest_palindromic_substring;
 mod problem_0006_zigzag_conversion;
 mod problem_0007_reverse_integer;
+mod problem_0009_palindrome_number;
