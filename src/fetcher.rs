@@ -78,5 +78,5 @@ pub fn fetch_with_slug(slug: &str) -> Problem {
 }
 
 fn normalize(content: &str) -> String {
-    html2text::from_read(content.as_bytes(), 80).replace("\n", "\n *")
+    html2text::from_read(content.as_bytes(), 80).replace("\n", "\n * ")
 }
